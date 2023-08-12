@@ -27,6 +27,36 @@ const _nav = [
     },
   },
   {
+    component: CNavItem,
+    name: 'ProductManagement',
+    to: '/pages/product_management',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    badge: {
+      color: 'info',
+      text: 'Who needs some baymax?',
+    },
+  },
+  {
+    component: CNavItem,
+    name: 'Mẫu quản lý',
+    to: '/pages/product_categories_management',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    badge: {
+      color: 'success',
+      text: 'Mẫu',
+    },
+  },
+  {
+    component: CNavItem,
+    name: 'Mẫu chi tiết',
+    to: '/pages/product_categories_detail',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    badge: {
+      color: 'success',
+      text: 'Mẫu',
+    },
+  },
+  {
     component: CNavTitle,
     name: 'Theme',
   },

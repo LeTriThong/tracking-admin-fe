@@ -40,8 +40,10 @@ import {
   cibTwitter,
   cilCloudDownload,
   cilPeople,
+  cilXCircle,
   cilUser,
   cilUserFemale,
+  cilChevronCircleRightAlt,
 } from '@coreui/icons'
 
 import avatar1 from 'src/assets/images/avatars/1.jpg'
@@ -177,6 +179,32 @@ const Dashboard = () => {
       activity: 'Last week',
     },
   ]
+
+  const employee = [
+    {
+      avatar: { src: avatar4, status: 'secondary' },
+      user: "Ngô Văn Trung",
+      role: "Admin"
+    },
+    {
+      avatar: { src: avatar4, status: 'secondary' },
+      user: "Nguyễn Thiên An",
+      role: "User"
+    },
+    {
+      avatar: { src: avatar4, status: 'secondary' },
+      user: "Phạm Huy Cường Thịnh",
+      role: "Super Admin"
+    },
+    {
+      avatar: { src: avatar4, status: 'secondary' },
+      user: "Một thằng nào đó tên dài vcl mà chưa kịp căn",
+      role: "Admin"
+    },
+
+  ]
+
+
 
   return (
     <>
@@ -446,6 +474,98 @@ const Dashboard = () => {
                         <div className="small text-medium-emphasis">Last login</div>
                         <strong>{item.activity}</strong>
                       </CTableDataCell>
+                    </CTableRow>
+                  ))}
+                </CTableBody>
+              </CTable>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+
+      <CRow>
+        <CCol xs>
+          <CCard className="mb-4">
+            <CCardHeader>Supplier list</CCardHeader>
+            <CCardBody>
+              <CRow className="justify-content-end mb-1">
+                <CCol xs={6} className="" >
+                  <CButton color="success" className="float-end text-white" >
+                    <CIcon icon={cilPeople} className="me-2" style={{ '--ci-primary-color': 'white' }} />
+                    Add a supplier
+                  </CButton>
+                </CCol>
+              </CRow>
+
+              <CTable align="middle" className="mb-0 border" hover responsive>
+                <CTableHead color="light">
+                  <CTableRow>
+                    <CTableHeaderCell className="text-center">
+                      <CIcon icon={cilPeople} />
+                    </CTableHeaderCell>
+                    <CTableHeaderCell>User</CTableHeaderCell>
+                    {/* <CTableHeaderCell className="text-center">Country</CTableHeaderCell> */}
+                    <CTableHeaderCell className='text-center'>Role</CTableHeaderCell>
+                    {/* <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell> */}
+                    <CTableHeaderCell className='text-center'>Activity</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>
+                  {employee.map((item, index) => (
+                    <CTableRow v-for="item in tableItems" key={index}>
+                      <CTableDataCell className="text-center">
+                        <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
+                      </CTableDataCell>
+                      <CTableDataCell className="textCenter">
+                        {/* <div>{item.user.name}</div> */}
+                        <div>{item.user}</div>
+                        {/* <div className="small text-medium-emphasis"> */}
+                        {/* <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '} */}
+                        {/* {item.user.registered} */}
+                        {/* </div> */}
+                      </CTableDataCell>
+                      {/* <CTableDataCell className="text-center">
+                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
+                      </CTableDataCell> */}
+                      {/* <CTableDataCell>
+                        <div className="clearfix">
+                          <div className="float-start">
+                            <strong>{item.usage.value}%</strong>
+                          </div>
+                          <div className="float-end">
+                            <small className="text-medium-emphasis">{item.usage.period}</small>
+                          </div>
+                        </div>
+                        <CProgress thin color={item.usage.color} value={item.usage.value} />
+                      </CTableDataCell> */}
+                      <CTableDataCell className='text-center'>
+                        {
+                          <text className={` ${item.role === 'User' ? "text-success" : (item.role === 'Admin' ? "text-danger" : "text-info")}`}>
+                            {item.role}
+                          </text>
+                        }
+                      </CTableDataCell>
+                      <CTableDataCell className='text-center' >
+                        <CButtonGroup role="group">
+                        <CButton color="danger" className="text-white" >
+                          <CIcon icon={cilXCircle} className="me-1" style={{ '--ci-primary-color': 'white' }} />
+                          Pay acc
+                        </CButton>
+                        <CButton color="success" className="text-white" >
+                          <CIcon icon={cilChevronCircleRightAlt} className="me-1" style={{ '--ci-primary-color': 'white' }} />
+                          Xem chi tiết
+                        </CButton>
+                          {/* <CButton color="warning">Middle</CButton> */}
+                          {/* <CButton color="success">Right</CButton> */}
+                        </CButtonGroup>
+                      </CTableDataCell>
+                      {/* <CTableDataCell className="text-center">
+                        <CIcon size="xl" icon={item.payment.icon} />
+                      </CTableDataCell> */}
+                      {/* <CTableDataCell>
+                        <div className="small text-medium-emphasis">Last login</div>
+                        <strong>{item.activity}</strong>
+                      </CTableDataCell> */}
                     </CTableRow>
                   ))}
                 </CTableBody>

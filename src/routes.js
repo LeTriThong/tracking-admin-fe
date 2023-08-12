@@ -50,6 +50,11 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+//Pages
+const ProductManagement = React.lazy(() => import('./views/pages/product_management/ProductManagement'))
+const ProductCategoriesManagement = React.lazy(() => import('./views/pages/product_categories_management/ProductCategoriesManagement'))
+const ProductCategoriesDetail = React.lazy(() => import('./views/pages/product_categories_management/ProductCategoriesDetail'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -95,6 +100,17 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+
+
+  //Define your own path after this line
+  //Creampuff lover
+  { path: '/pages/product_management', name: 'ProductManagement', element: ProductManagement },
+  { path: '/pages/product_categories_management', name: 'ProductCategoriesManagement', element: ProductCategoriesManagement },
+  { path: '/pages/product_categories_detail', name: 'ProductCategoriesDetail', element: ProductCategoriesDetail },
+
+
+  //Ant
+
 ]
 
 export default routes
