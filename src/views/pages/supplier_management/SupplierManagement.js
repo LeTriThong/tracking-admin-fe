@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   CAvatar,
@@ -59,6 +59,16 @@ import { useNavigate } from 'react-router-dom';
 const SupplierManagement = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
     const navigate = useNavigate();
+
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+      console.log(count);
+    }, [count])
+
+    useEffect(() => {
+      console.log("ajnfkjdsj");
+    }, [])
 
     const supplier = [
     {
@@ -202,6 +212,7 @@ const SupplierManagement = () => {
               ))}
             </CTableBody>
           </CTable>
+          <CButton onClick={() => {setCount(count + 1)}}>count = {count}</CButton>
         </CCardBody>
       </CCard>
     </CCol>

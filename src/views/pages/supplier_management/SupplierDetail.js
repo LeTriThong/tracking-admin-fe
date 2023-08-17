@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
     CAvatar,
@@ -60,6 +60,9 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 const SupplierDetail = () => {
     const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
+    const [categoryName, setCategoryName] = useState("");
+    const [categoryDescription, setCategoryDescription] = useState("");
+
 
     const supplier = [
         {
@@ -110,11 +113,17 @@ const SupplierDetail = () => {
                         <CForm onSubmit={() => console.log("Test")}>
                             <div className="mb-3">
                                 <CFormLabel htmlFor="exampleFormControlInput1">Category name</CFormLabel>
-                                <CFormInput type="input" id="categoryName" placeholder="Tên loại hàng" />
+                                <CFormInput type="input" id="categoryName" placeholder="Tên loại hàng" 
+                                            value={categoryName} onChange={(text) => {
+                                                setCategoryName(text.target.value);
+                                            }}/>
                             </div>
                             <div className="mb-3">
                                 <CFormLabel htmlFor="exampleFormControlInput1">Description</CFormLabel>
-                                <CFormInput type="input" id="categoryDescription" placeholder="Đây là mẫu mô tả..." />
+                                <CFormInput type="input" id="categoryDescription" placeholder="Đây là mẫu mô tả..." 
+                                            value={categoryDescription} onChange={(text) => {
+                                                setCategoryDescription(text.target.value);
+                                            }}/>
                             </div>
                             {/* <div className="mb-3">
                                 <CFormLabel htmlFor="exampleFormControlTextarea1">Example textarea</CFormLabel>
