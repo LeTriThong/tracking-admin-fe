@@ -322,6 +322,16 @@ const _nav = [
         name: 'Error 500',
         to: '/500',
       },
+      {
+        component: CNavItem,
+        name: 'Supplier Example',
+        to: '/pages/supplier_management',
+      },
+      {
+        component: CNavItem,
+        name: 'Supplier Detail',
+        to: '/pages/supplier_detail',
+      }
     ],
   },
   {

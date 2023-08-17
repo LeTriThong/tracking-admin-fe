@@ -54,6 +54,9 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const ProductManagement = React.lazy(() => import('./views/pages/product_management/ProductManagement'))
 const ProductCategoriesManagement = React.lazy(() => import('./views/pages/product_categories_management/ProductCategoriesManagement'))
 const ProductCategoriesDetail = React.lazy(() => import('./views/pages/product_categories_management/ProductCategoriesDetail'))
+const SupplierManagement = React.lazy(() => import('./views/pages/supplier_management/SupplierManagement'))
+const SupplierDetail = React.lazy(() => import('./views/pages/supplier_management/SupplierDetail'))
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -110,7 +113,8 @@ const routes = [
 
 
   //Ant
-
+  { path: '/pages/supplier_management', name: 'SupplierManagement', element: SupplierManagement },
+  { path: '/pages/supplier_detail', name: 'SupplierDetail', element: SupplierDetail },
 ]
 
 export default routes
