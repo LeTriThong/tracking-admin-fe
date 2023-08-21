@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
     CAvatar,
@@ -55,6 +55,9 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 
 const ProductManagement = () => {
     const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+    const [count, setCount] = useState(0)
+
 
     const progressExample = [
         { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
@@ -219,6 +222,12 @@ const ProductManagement = () => {
                       </CButton>
                     </CCol>
                   </CRow>
+
+                  <CButton onClick={() => setCount(count + 1)}>
+                    <div>
+                    <strong>count = {count}</strong>
+                    </div>
+                  </CButton>
     
                   <CTable align="middle" className="mb-0 border" hover responsive>
                     <CTableHead color="light">

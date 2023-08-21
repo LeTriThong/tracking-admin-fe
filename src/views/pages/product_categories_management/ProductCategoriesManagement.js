@@ -57,7 +57,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ProductCategoriesManagement = () => {
-  const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
     const navigate = useNavigate();
 
   const employee = [
@@ -183,14 +182,19 @@ const ProductCategoriesManagement = () => {
                       <CIcon icon={cilXCircle} className="me-1" style={{ '--ci-primary-color': 'white' }} />
                       Pay acc
                     </CButton>
-                    <CButton color="primary"  onClick={() => {navigate('/pages/product_categories_detail')}}>
+                    <CButton color="primary">
                         Register Now!
                       </CButton>
                     
                       
                     
                     <CButton color="success" className="text-white" >
-                      <CIcon icon={cilChevronCircleRightAlt} className="me-1" style={{ '--ci-primary-color': 'white' }} />
+                      <CIcon icon={cilChevronCircleRightAlt} className="me-1" style={{ '--ci-primary-color': 'white' }}
+                      onClick={() => {navigate('/pages/product_categories_detail', {
+                        "state": {
+                          "item": item
+                        }
+                      })}} />
                       Xem chi tiết
                     </CButton>
                       {/* <CButton color="warning">Middle</CButton> */}

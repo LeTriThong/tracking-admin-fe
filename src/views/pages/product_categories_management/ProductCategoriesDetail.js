@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
     CAvatar,
@@ -55,57 +55,28 @@ import avatar3 from 'src/assets/images/avatars/3.jpg'
 import avatar4 from 'src/assets/images/avatars/4.jpg'
 import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
+import { useLocation } from 'react-router-dom'
+import BaseInput from 'src/components/commons/BaseInput'
 
 
-const ProductCategoriesDetail = () => {
+const ProductCategoriesDetail = (props) => {
     const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
+    const {state} = useLocation();
 
-    const employee = [
-        {
-            avatar: { src: avatar4, status: 'secondary' },
-            user: "Ngô Văn Trung",
-            role: "Admin"
-        },
-        {
-            avatar: { src: avatar4, status: 'secondary' },
-            user: "Nguyễn Thiên An",
-            role: "User"
-        },
-        {
-            avatar: { src: avatar4, status: 'secondary' },
-            user: "Phạm Huy Cường Thịnh",
-            role: "Super Admin"
-        },
-        {
-            avatar: { src: avatar4, status: 'secondary' },
-            user: "Một thằng nào đó tên dài vcl mà chưa kịp căn",
-            role: "Admin"
-        },
+    const [categoryName, setCategoryName] = useState("");
+    const [categoryDescription, setCategoryDescription] = useState("");
 
-    ]
+    useEffect(() => {
 
-    const product_category_example = [
-        {
-            "name": "Loại hàng 1",
-            "description": "Đây là mô tả mặt hàng 1"
-        },
-        {
-            "name": "Loại hàng 2",
-            "description": "Đây là mô tả mặt hàng 2"
-        },
-        {
-            "name": "Loại hàng 3",
-            "description": "Đây là mô tả mặt hàng 3"
-        },
-        {
-            "name": "Loại hàng 4 121 124 543 54 3543 55543 543 35",
-            "description": "Đây là mô tả mặt hàng 4, nó rất dài nên chỗ này cần phải có dấu ba chấm, nó cần dài a efwef wf weg wg wg re get h eth rthhwhhw ......"
-        },
-    ]
+    }, [])
 
-
-
+    const handleSubmit = (event) => {
+        console.log("tet")
+        console.log(categoryName);
+        console.log(categoryDescription);
+        event.preventDefault();
+    }
 
     return (
         <CRow>
@@ -113,22 +84,10 @@ const ProductCategoriesDetail = () => {
                 <CCard className="mb-4">
                     <CCardHeader>Supplier list</CCardHeader>
                     <CCardBody>
-                        <CForm onSubmit={() => console.log("Test")}>
-                            <div className="mb-3">
-                                <CFormLabel htmlFor="exampleFormControlInput1">Category name</CFormLabel>
-                                <CFormInput type="input" id="categoryName" placeholder="Tên loại hàng" />
-                            </div>
-                            <div className="mb-3">
-                                <CFormLabel htmlFor="exampleFormControlInput1">Description</CFormLabel>
-                                <CFormInput type="input" id="categoryDescription" placeholder="Đây là mẫu mô tả..." />
-                            </div>
-                            {/* <div className="mb-3">
-                                <CFormLabel htmlFor="exampleFormControlTextarea1">Example textarea</CFormLabel>
-                                <CFormTextarea id="exampleFormControlTextarea1" rows={3}></CFormTextarea>
-                            </div> */}
-                            <CButton color="primary" type="submit">
-                                Submit form
-                            </CButton>
+                        <CForm onSubmit={handleSubmit}>
+                            <BaseInput name="categoryName" title="abcd!!!" onChange={(text) => {setCategoryName(text)}} />
+                            <BaseInput name="categoryDescription" title="efgh!!!" onChange={(text) => {setCategoryDescription(text)}}/>
+                            <CButton type="submit">Submit!</CButton>  
                         </CForm>
 
                     </CCardBody>

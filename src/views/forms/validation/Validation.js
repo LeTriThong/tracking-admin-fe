@@ -44,6 +44,7 @@ const CustomStyles = () => {
         <CFormLabel htmlFor="validationCustom02">Email</CFormLabel>
         <CFormInput type="text" id="validationCustom02" defaultValue="Otto" required />
         <CFormFeedback valid>Looks good!</CFormFeedback>
+        <CFormFeedback invalid>Looks bad!</CFormFeedback>
       </CCol>
       <CCol md={4}>
         <CFormLabel htmlFor="validationCustomUsername">Username</CFormLabel>
