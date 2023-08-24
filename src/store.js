@@ -1,3 +1,5 @@
+import { configureStore } from '@reduxjs/toolkit'
+import demoSlice from './reducer/demoSlice'
 import { createStore } from 'redux'
 
 const initialState = {
@@ -13,5 +15,8 @@ const changeState = (state = initialState, { type, ...rest }) => {
   }
 }
 
-const store = createStore(changeState)
+// const store = createStore(changeState)
+const store = configureStore({
+  reducer: demoSlice
+});
 export default store
