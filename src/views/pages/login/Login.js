@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -15,8 +15,33 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import { useDispatch, useSelector } from 'react-redux'
+import demoSlice, { DemoSliceAction, increment } from 'src/reducer/demoSlice'
 
 const Login = () => {
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector(state => state.isAuthenticated);
+  const dispatch = useDispatch();
+  const state = useLocation();
+
+  const handleLogin = () => {
+    // dispatch()
+    console.log("a");
+    console.log(DemoSliceAction)
+    dispatch(DemoSliceAction.increment())
+    dispatch(DemoSliceAction.setIsAuthenticated(true))
+    dispatch(DemoSliceAction.addItemToArray(4))
+    navigate('/')
+
+    // dispatch(DemoSliceAction.increment())
+
+    /*
+       login().then(() => {
+      navigate(state?.path || "/dashboard");
+    });
+    */
+
+  }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -46,7 +71,7 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton color="primary" className="px-4" onClick={() => {handleLogin()}}>
                           Login
                         </CButton>
                       </CCol>

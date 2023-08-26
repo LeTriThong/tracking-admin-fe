@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const demoSlice = createSlice({
+export const demoAnotherSlice = createSlice({
   name: 'counter',
   initialState: {
     value: 0,
@@ -15,7 +15,7 @@ export const demoSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.value += 1
-      console.log("Demo Slice!")
+      console.log("Demo another slice!")
     },
     decrement: state => {
       state.value -= 1
@@ -40,10 +40,10 @@ export const demoSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = demoSlice.actions
+export const { increment, decrement, incrementByAmount } = demoAnotherSlice.actions
 
-export const DemoSliceAction = demoSlice.actions
+export const DemoAnotherSliceAction = demoAnotherSlice.actions
 
-export const DemoSliceReducer = demoSlice.reducer;
+export const DemoAnotherSliceReducer = demoAnotherSlice.reducer;
 
-export default DemoSliceReducer;
+export default DemoAnotherSliceReducer;
