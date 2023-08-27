@@ -1,0 +1,11 @@
+export const ACTION_INCREMENT =  "increment"
+export const ACTION_DECREMENT =  "DECREMENT"
+export const ACTION_INCREMENT_BY_AMOUNT =  "INCREMENT_BY_AMOUNT"
+export const ACTION_SET =  "SET"
+export const ACTION_SET_IS_AUTHENTICATED =  "SET_IS_AUTHENTICATED"
+export const ACTION_ADD_ITEM_TO_ARRAY =  "ADD_ITEM_TO_ARRAY"
+
+const ACTION_CONSTANT = {
+    ACTION_INCREMENT: "increment"
+}
+export default ACTION_CONSTANT

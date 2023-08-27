@@ -9,7 +9,7 @@ export const demoSlice = createSlice({
     initialArray: [3, 4, 5]
   },
   reducers: {
-    increment: state => {
+    "increment": state => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
