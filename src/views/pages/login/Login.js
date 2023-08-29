@@ -18,6 +18,7 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import demoSlice, { DemoSliceAction, increment } from 'src/reducer/demoSlice'
 import ACTION_CONSTANT from 'src/reducer/actionConstants'
+import { incrementAsync } from 'src/reducer/demoAnotherSlice'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,8 +31,9 @@ const Login = () => {
     console.log("a");
     console.log(DemoSliceAction)
     dispatch(DemoSliceAction[ACTION_CONSTANT.ACTION_INCREMENT]())
-    dispatch(DemoSliceAction.setIsAuthenticated(true))
-    dispatch(DemoSliceAction.addItemToArray(4))
+    // dispatch(DemoSliceAction.setIsAuthenticated(true))
+    // dispatch(DemoSliceAction.addItemToArray(4))
+    dispatch(incrementAsync(3))
     navigate('/')
 
     // dispatch(DemoSliceAction.increment())

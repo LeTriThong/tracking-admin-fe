@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ACTION_CONSTANT, { ACTION_INCREMENT } from './actionConstants'
+import axios from 'axios'
 
 const _createReducer = () => {
   return {
@@ -33,6 +34,43 @@ const _createReducer = () => {
   }
 }
 
+export async function fetchCount(amount = 1) {
+
+  const response = async (amount) => {
+   const t = await axios.get("https://catfact.ninja/fact")
+    .then(res => {
+      console.log(res.data);
+      return {data: 2};
+    })
+    .catch(e => {
+      console.log("Fail!");
+      return {data: 3}
+    })
+    return t
+  }
+
+  const value = await response(amount);
+  console.log(value);
+  return value;
+  // return new Promise((resolve) =>
+  // setTimeout(() => resolve({ data: amount }), 1500)
+  // );
+}
+
+// The function below is called a thunk and allows us to perform async logic. It
+// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
+// will call the thunk with the `dispatch` function as the first argument. Async
+// code can then be executed and other actions can be dispatched. Thunks are
+// typically used to make async requests.
+export const incrementAsync = createAsyncThunk(
+  'counter/fetchCount',
+  async (amount) => {
+    const response = await fetchCount(amount);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
 export const demoAnotherSlice = createSlice({
   name: 'counter',
   initialState: {
@@ -41,7 +79,19 @@ export const demoAnotherSlice = createSlice({
     sidebarShow: true,
     initialArray: [3, 4, 5]
   },
-  reducers: _createReducer()
+  reducers: _createReducer(),
+  extraReducers: builder => {
+    builder
+      .addCase(incrementAsync.pending, (state) => {
+        // state.status = 'loading';
+        console.log("Loading...")
+      })
+      .addCase(incrementAsync.fulfilled, (state, action) => {
+        // state.status = 'idle';
+        state.value += action.payload;
+        console.log("Completed!")
+      });
+  }
   // {
   //   increment: state => {
   //     // Redux Toolkit allows us to write "mutating" logic in reducers. It
