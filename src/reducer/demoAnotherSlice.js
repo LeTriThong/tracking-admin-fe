@@ -4,7 +4,17 @@ import axios from 'axios'
 
 const _createReducer = () => {
   return {
-    [ACTION_CONSTANT.ACTION_INCREMENT]: function (state) {
+    [ACTION_CONSTANT.ACTION_LOGIN_SUCCESS]: function (state, action) {
+      // console.log("ACTION_LOGIN_SUCCESS", payload);
+      console.log(state)
+      console.log(action.payload)
+      state.isAuthenticated = true;
+      
+      
+      
+    },
+    [ACTION_CONSTANT.ACTION_INCREMENT]: function (state, action) {
+
       //     // Redux Toolkit allows us to write "mutating" logic in reducers. It
       //     // doesn't actually mutate the state because it uses the Immer library,
       //     // which detects changes to a "draft state" and produces a brand new
@@ -72,10 +82,12 @@ export const incrementAsync = createAsyncThunk(
 );
 
 export const demoAnotherSlice = createSlice({
-  name: 'counter',
+  name: 'demoAnotherSlice',
   initialState: {
     value: 0,
     isAuthenticated: false,
+    username: "",
+    password: "",
     sidebarShow: true,
     initialArray: [3, 4, 5]
   },

@@ -6,6 +6,7 @@ export const ACTION_SET_IS_AUTHENTICATED =  "SET_IS_AUTHENTICATED"
 export const ACTION_ADD_ITEM_TO_ARRAY =  "ADD_ITEM_TO_ARRAY"
 
 const ACTION_CONSTANT = {
-    ACTION_INCREMENT: "increment"
+    ACTION_INCREMENT: "increment",
+    ACTION_LOGIN_SUCCESS: "login_success"
 }
 export default ACTION_CONSTANT

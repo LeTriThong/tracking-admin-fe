@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   CButton,
@@ -18,23 +18,49 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import demoSlice, { DemoSliceAction, increment } from 'src/reducer/demoSlice'
 import ACTION_CONSTANT from 'src/reducer/actionConstants'
-import { incrementAsync } from 'src/reducer/demoAnotherSlice'
+import { DemoAnotherSliceAction, incrementAsync } from 'src/reducer/demoAnotherSlice'
+import axios from 'axios'
 
 const Login = () => {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector(state => state.isAuthenticated);
+  const isAuthenticated = useSelector(state => state.demoAnotherSlice.isAuthenticated);
   const dispatch = useDispatch();
   const state = useLocation();
 
-  const handleLogin = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    console.log("isAuthenticated changed! " + isAuthenticated)
+    if (isAuthenticated == true) {
+      navigate('/')
+    }
+  }, [isAuthenticated])
+
+  const handleLogin = async () => {
     // dispatch()
     console.log("a");
-    console.log(DemoSliceAction)
-    dispatch(DemoSliceAction[ACTION_CONSTANT.ACTION_INCREMENT]())
+
+    await axios.post("http://localhost:3000/admin/login", {
+      AdminName: username,
+      Password: password
+    }).then((res) => {
+    
+      
+      console.log(res.data);
+      let t = ACTION_CONSTANT.ACTION_LOGIN_SUCCESS;
+      console.log(t);
+      dispatch(DemoAnotherSliceAction[t](res.data));
+    })
+    .catch(e => {
+      console.log(e)
+    })
+    // console.log(DemoSliceAction)
+    // dispatch(DemoSliceAction[ACTION_CONSTANT.ACTION_INCREMENT]())
     // dispatch(DemoSliceAction.setIsAuthenticated(true))
     // dispatch(DemoSliceAction.addItemToArray(4))
-    dispatch(incrementAsync(3))
-    navigate('/')
+    // dispatch(incrementAsync(3))
+    // navigate('/')
 
     // dispatch(DemoSliceAction.increment())
 
@@ -56,11 +82,13 @@ const Login = () => {
                   <CForm>
                     <h1>Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
+                    <p className="text-medium-emphasis">{isAuthenticated ? isAuthenticated : "abcd"}</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput placeholder="Username" 
+                      onChange={(text) => setUsername(text.target.value)} />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -69,7 +97,7 @@ const Login = () => {
                       <CFormInput
                         type="password"
                         placeholder="Password"
-                        autoComplete="current-password"
+                        onChange={(text) => setPassword(text.target.value)}
                       />
                     </CInputGroup>
                     <CRow>

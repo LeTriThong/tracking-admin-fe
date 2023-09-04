@@ -5,7 +5,7 @@ import { Route, Redirect, useLocation, Navigate } from 'react-router-dom';
 // export { PrivateRoute };
 
 function RequireAuth({ children }) {
-    const isAuthenticated = useSelector(state => state.isAuthenticated);
+    const isAuthenticated = useSelector(state => state.demoAnotherSlice.isAuthenticated);
     const location = useLocation();
 
     // const { authed } = useSelector();
